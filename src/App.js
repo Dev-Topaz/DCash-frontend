@@ -54,6 +54,7 @@ function App() {
         token2Amount: item.token2Amount,
         feeAmountInToken2: item.feeAmountInToken2,
         token2Rate: item.token2Rate,
+        timestamp: item.timestamp,
       };
       exportData.push(extract);
     });
@@ -89,6 +90,7 @@ function App() {
             <th>token2Amount</th>
             <th>feeAmountInToken2</th>
             <th>token2Rate</th>
+            <th>timestamp</th>
           </tr>
           {data.map((item, index) => (
             <tr key={index}>
@@ -104,6 +106,7 @@ function App() {
               <td>{item.token2Amount}</td>
               <td>{item.feeAmountInToken2}</td>
               <td>{item.token2Rate}</td>
+              <td>{item.timestamp}</td>
             </tr>
           ))}
         </table>
