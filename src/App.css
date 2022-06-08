@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.exportButton {
+  width: 150px;
+  height: 50px;
+  margin-left: 10rem;
+}
+
+.inputDate {
+  width: 150px;
+  height: 40px;
+  font-size: large;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+td {
+  padding: 3px;
+}
+
+.table-container {
+  width: 90%;
+  margin: auto;
+  overflow: auto;
+}
