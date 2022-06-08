@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://178.62.112.96/api/locks/";
+axios.defaults.baseURL = "https://ibaseproject.com/api/locks/";
 
 export async function getAll() {
   const result = await axios
