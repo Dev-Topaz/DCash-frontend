@@ -6,6 +6,7 @@ import { ExportToCsv } from "export-to-csv";
 function App() {
   const [date, setDate] = useState(null);
   const [data, setData] = useState([]);
+  const [onlyLocked, setOnlyLocked] = useState(false);
 
   useEffect(() => {
     if (date == null) {
@@ -55,6 +56,7 @@ function App() {
         feeAmountInToken2: item.feeAmountInToken2,
         token2Rate: item.token2Rate,
         timestamp: item.timestamp,
+        unlocked: item.unlocked ? "Yes" : "No",
       };
       exportData.push(extract);
     });
@@ -71,6 +73,15 @@ function App() {
           className="inputDate"
           onChange={(e) => setDate(e.target.value)}
         />
+        <label>
+          <input
+            type="checkbox"
+            checked={onlyLocked}
+            className="inputCheckBox"
+            onChange={(e) => setOnlyLocked(e.target.checked)}
+          />
+          Show locked only
+        </label>
         <button onClick={exportToCsv} className="exportButton">
           Export to CSV
         </button>
@@ -91,24 +102,50 @@ function App() {
             <th>feeAmountInToken2</th>
             <th>token2Rate</th>
             <th>timestamp</th>
+            <th>Unlocked</th>
           </tr>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.lockId}</td>
-              <td>{item.tierId}</td>
-              <td>{item.pairId}</td>
-              <td>{item.nftCollection}</td>
-              <td>{item.nftId}</td>
-              <td>{item.nftDiscount}</td>
-              <td>{item.token1Amount}</td>
-              <td>{item.feeAmountInToken1}</td>
-              <td>{item.token1Rate}</td>
-              <td>{item.token2Amount}</td>
-              <td>{item.feeAmountInToken2}</td>
-              <td>{item.token2Rate}</td>
-              <td>{item.timestamp}</td>
-            </tr>
-          ))}
+          {data.map((item, index) => {
+            if (onlyLocked)
+              return (
+                !item.unlocked && (
+                  <tr key={index}>
+                    <td>{item.lockId}</td>
+                    <td>{item.tierId}</td>
+                    <td>{item.pairId}</td>
+                    <td>{item.nftCollection}</td>
+                    <td>{item.nftId}</td>
+                    <td>{item.nftDiscount}</td>
+                    <td>{item.token1Amount}</td>
+                    <td>{item.feeAmountInToken1}</td>
+                    <td>{item.token1Rate}</td>
+                    <td>{item.token2Amount}</td>
+                    <td>{item.feeAmountInToken2}</td>
+                    <td>{item.token2Rate}</td>
+                    <td>{item.timestamp}</td>
+                    <td>{item.unlocked ? "Yes" : "No"}</td>
+                  </tr>
+                )
+              );
+            else
+              return (
+                <tr key={index}>
+                  <td>{item.lockId}</td>
+                  <td>{item.tierId}</td>
+                  <td>{item.pairId}</td>
+                  <td>{item.nftCollection}</td>
+                  <td>{item.nftId}</td>
+                  <td>{item.nftDiscount}</td>
+                  <td>{item.token1Amount}</td>
+                  <td>{item.feeAmountInToken1}</td>
+                  <td>{item.token1Rate}</td>
+                  <td>{item.token2Amount}</td>
+                  <td>{item.feeAmountInToken2}</td>
+                  <td>{item.token2Rate}</td>
+                  <td>{item.timestamp}</td>
+                  <td>{item.unlocked ? "Yes" : "No"}</td>
+                </tr>
+              );
+          })}
         </table>
       </div>
     </div>

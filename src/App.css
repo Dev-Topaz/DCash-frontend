@@ -49,3 +49,7 @@ td {
   margin: auto;
   overflow: auto;
 }
+
+.inputCheckBox {
+  margin-left: 5rem;
+}
