@@ -12,7 +12,7 @@ function App() {
     if (date == null) {
       getAll().then((result) => {
         if (result) {
-          console.log(result);
+          // console.log(result);
           setData(result);
         }
       });
@@ -104,10 +104,32 @@ function App() {
             <th>timestamp</th>
             <th>Unlocked</th>
           </tr>
-          {data.map((item, index) => {
-            if (onlyLocked)
-              return (
-                !item.unlocked && (
+          {data
+            .sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1))
+            .map((item, index) => {
+              if (onlyLocked)
+                return (
+                  !item.unlocked && (
+                    <tr key={index}>
+                      <td>{item.lockId}</td>
+                      <td>{item.tierId}</td>
+                      <td>{item.pairId}</td>
+                      <td>{item.nftCollection}</td>
+                      <td>{item.nftId}</td>
+                      <td>{item.nftDiscount}</td>
+                      <td>{item.token1Amount}</td>
+                      <td>{item.feeAmountInToken1}</td>
+                      <td>{item.token1Rate}</td>
+                      <td>{item.token2Amount}</td>
+                      <td>{item.feeAmountInToken2}</td>
+                      <td>{item.token2Rate}</td>
+                      <td>{item.timestamp}</td>
+                      <td>{item.unlocked ? "Yes" : "No"}</td>
+                    </tr>
+                  )
+                );
+              else
+                return (
                   <tr key={index}>
                     <td>{item.lockId}</td>
                     <td>{item.tierId}</td>
@@ -124,28 +146,8 @@ function App() {
                     <td>{item.timestamp}</td>
                     <td>{item.unlocked ? "Yes" : "No"}</td>
                   </tr>
-                )
-              );
-            else
-              return (
-                <tr key={index}>
-                  <td>{item.lockId}</td>
-                  <td>{item.tierId}</td>
-                  <td>{item.pairId}</td>
-                  <td>{item.nftCollection}</td>
-                  <td>{item.nftId}</td>
-                  <td>{item.nftDiscount}</td>
-                  <td>{item.token1Amount}</td>
-                  <td>{item.feeAmountInToken1}</td>
-                  <td>{item.token1Rate}</td>
-                  <td>{item.token2Amount}</td>
-                  <td>{item.feeAmountInToken2}</td>
-                  <td>{item.token2Rate}</td>
-                  <td>{item.timestamp}</td>
-                  <td>{item.unlocked ? "Yes" : "No"}</td>
-                </tr>
-              );
-          })}
+                );
+            })}
         </table>
       </div>
     </div>
